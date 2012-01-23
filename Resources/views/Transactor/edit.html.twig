@@ -1,0 +1,22 @@
+{% extends '::base.html.twig' %}
+
+{% block subtitle %}Edit Transactor{% endblock %}
+
+{% block panel %}
+  {{ panel(
+    { 'label' : 'Transactors', 'icon' : 'icon2570' },
+    { 'label' : transactor.name },
+    { 'label' : 'New Transactor', 'icon' : 'icon2546', 'link' : path('transactor_new') }
+  ) }}
+{% endblock %}
+
+{% block content %}
+<h1>Edit Transactor</h1>
+
+<form action="{{ path('transactor_update', { 'id': transactor.id }) }}" method="post" {{ form_enctype(form) }}>
+    {{ form_widget(form) }}
+    <p class="form-buttons">
+        <button type="submit">Save Changes</button>
+    </p>
+</form>
+{% endblock %}
