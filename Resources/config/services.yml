@@ -1,6 +1,6 @@
-services:
-  orkestra.encrypted_properties_subscriber:
-    class: Orkestra\Common\Subscriber\EncryptedPropertiesSubscriber
-    arguments: [@service_container]
-    tags:
-      - { name: doctrine.event_subscriber, connection: default }
+# services:
+#   orkestra.encrypted_properties_subscriber:
+#     class: Orkestra\Common\Subscriber\EncryptedPropertiesSubscriber
+#     arguments: [@service_container]
+#     tags:
+#       - { name: doctrine.event_subscriber, connection: default }
