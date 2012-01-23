@@ -18,7 +18,7 @@ class TransactorListOptions extends PaginationOptions
              
              ->addColumn(new PropertyColumn('id', 'ID'))
              ->addColumn(new PropertyColumn('name', 'Name', array(
-                                'route' => 'transactor_show', 
+                                'route' => 'admin_transactor_show', 
                                 'routeParams' => array(
                                     'id' => 'id'
                                 ))))

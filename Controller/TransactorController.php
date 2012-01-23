@@ -21,7 +21,7 @@ class TransactorController extends Controller
     /**
      * Lists all Transactors.
      *
-     * @Route("/transactors", name="transactors")
+     * @Route("/transactors", name="admin_transactors")
      * @Template()
      */
     public function indexAction()
@@ -34,7 +34,7 @@ class TransactorController extends Controller
     /**
      * Finds and displays a TransactorBase entity.
      *
-     * @Route("/transactor/{id}/show", name="transactor_show")
+     * @Route("/transactor/{id}/show", name="admin_transactor_show")
      * @Template()
      */
     public function showAction($id)
@@ -55,7 +55,7 @@ class TransactorController extends Controller
     /**
      * Displays a form to create a new Transactor.
      *
-     * @Route("/transactor/new", name="transactor_new")
+     * @Route("/transactor/new", name="admin_transactor_new")
      * @Template()
      */
     public function newAction()
@@ -68,7 +68,7 @@ class TransactorController extends Controller
             if ($form->isValid()) {
                 $data = $form->getData();
                 
-                return $this->redirect($this->generateUrl('transactor_configure', array('type' => $data['type'])));
+                return $this->redirect($this->generateUrl('admin_transactor_configure', array('type' => $data['type'])));
             }
         }
 
@@ -80,7 +80,7 @@ class TransactorController extends Controller
     /**
      * Displays a form to configure a new TransactorBase.
      *
-     * @Route("/transactor/configure", name="transactor_configure")
+     * @Route("/transactor/configure", name="admin_transactor_configure")
      * @Template()
      */
     public function configureAction()
@@ -110,7 +110,7 @@ class TransactorController extends Controller
                 $em->persist($transactor);
                 $em->flush();
                 
-                return $this->redirect($this->generateUrl('transactor_show', array('id' => $transactor->getId())));
+                return $this->redirect($this->generateUrl('admin_transactor_show', array('id' => $transactor->getId())));
             }
         }
         
@@ -123,7 +123,7 @@ class TransactorController extends Controller
     /**
      * Displays a form to edit an existing Transactor
      *
-     * @Route("/transactor/{id}/edit", name="transactor_edit")
+     * @Route("/transactor/{id}/edit", name="admin_transactor_edit")
      * @Template()
      */
     public function editAction($id)
@@ -152,9 +152,9 @@ class TransactorController extends Controller
     }
 
     /**
-     * Edits an existing TransactorBase entity.
+     * Edits an existing Transactor
      *
-     * @Route("/transactor/{id}/update", name="transactor_update")
+     * @Route("/transactor/{id}/update", name="admin_transactor_update")
      * @Method("post")
      * @Template("OrkestraTransactorBundle:TransactorBase:edit.html.twig")
      */
@@ -183,7 +183,7 @@ class TransactorController extends Controller
             $em->persist($transactor);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('transactor_show', array('id' => $id)));
+            return $this->redirect($this->generateUrl('admin_transactor_show', array('id' => $id)));
         }
 
         return array(

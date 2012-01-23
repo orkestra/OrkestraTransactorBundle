@@ -12,7 +12,7 @@
 {% block content %}
 <h1>Configure New Transactor</h1>
 
-<form action="{{ path('transactor_configure', { 'type' : type }) }}" method="post" {{ form_enctype(form) }}>
+<form action="{{ path('admin_transactor_configure', { 'type' : type }) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p class="form-buttons">
         <button type="submit">Create Transactor</button>
