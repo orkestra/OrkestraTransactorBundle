@@ -110,6 +110,8 @@ class TransactorController extends Controller
                 $em->persist($transactor);
                 $em->flush();
                 
+                $this->get('session')->setFlash('success', 'The transactor has been created.');
+                
                 return $this->redirect($this->generateUrl('admin_transactor_show', array('id' => $transactor->getId())));
             }
         }
@@ -182,6 +184,8 @@ class TransactorController extends Controller
         if ($form->isValid()) {
             $em->persist($transactor);
             $em->flush();
+
+            $this->get('session')->setFlash('success', 'Your changes have been saved.');
 
             return $this->redirect($this->generateUrl('admin_transactor_show', array('id' => $id)));
         }

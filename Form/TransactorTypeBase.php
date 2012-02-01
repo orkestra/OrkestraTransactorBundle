@@ -10,8 +10,7 @@ abstract class TransactorTypeBase extends AbstractType
 {
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('type', null, array('read_only' => true))
-                ->add('name')
+        $builder->add('name')
                 ->add('description', null, array('required' => false))
                 ->add('active', null, array('required' => false));
     }
