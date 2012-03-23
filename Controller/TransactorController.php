@@ -39,9 +39,7 @@ class TransactorController extends Controller
      */
     public function showAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $transactor = $em->getRepository('Orkestra\Transactor\Entity\TransactorBase')->find($id);
+        $transactor = $this->get('orkestra.transactor_repository')->find($id);
 
         if (!$transactor) {
             throw $this->createNotFoundException('Unable to locate Transactor');
@@ -130,9 +128,7 @@ class TransactorController extends Controller
      */
     public function editAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $transactor = $em->getRepository('Orkestra\Transactor\Entity\TransactorBase')->find($id);
+        $transactor = $this->get('orkestra.transactor_repository')->find($id);
 
         if (!$transactor) {
             throw $this->createNotFoundException('Unable to locate Transactor');
@@ -162,9 +158,7 @@ class TransactorController extends Controller
      */
     public function updateAction($id)
     {
-        $em = $this->getDoctrine()->getEntityManager();
-
-        $transactor = $em->getRepository('Orkestra\Transactor\Entity\TransactorBase')->find($id);
+        $transactor = $this->get('orkestra.transactor_repository')->find($id);
 
         if (!$transactor) {
             throw $this->createNotFoundException('Unable to locate Transactor');
@@ -182,6 +176,7 @@ class TransactorController extends Controller
         $form->bindRequest($this->getRequest());
 
         if ($form->isValid()) {
+            $em = $this->getDoctrine()->getEntityManager();
             $em->persist($transactor);
             $em->flush();
 

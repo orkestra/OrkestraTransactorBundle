@@ -1,6 +1,8 @@
-# services:
-#   orkestra.encrypted_properties_subscriber:
-#     class: Orkestra\Common\Subscriber\EncryptedPropertiesSubscriber
-#     arguments: [@service_container]
-#     tags:
-#       - { name: doctrine.event_subscriber, connection: default }
+services:
+  orkestra.transactor_repository:
+    class: Orkestra\Transactor\Repository\TransactorRepository
+    factory_service: doctrine.orm.entity_manager
+    factory_method: getRepository
+    arguments: [ Orkestra\Transactor\Entity\TransactorBase ]
+    calls:
+      - [ setContainer, [ @service_container ] ]
