@@ -2,15 +2,10 @@
 
 {% block subtitle %}Transactors{% endblock %}
 
-{% block panel %}
-  {{ panel(
-    { 'label' : 'Transactors', 'icon' : 'icon2570' },
-    { 'label' : 'New Transactor', 'icon' : 'icon2546', 'link' : path('admin_transactor_new') }
-  ) }}
-{% endblock %}
+{% block content_header %}<h1>Transactors</h1>{% endblock %}
 
 {% block content %}
-<h1>Transactors</h1>
+<div id="inner-header"><h2>Transactors</h2></div>
 
-{{ paginate(paginator) }}
+{{ listing.render | raw }}
 {% endblock %}

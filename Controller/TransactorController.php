@@ -2,14 +2,15 @@
 
 namespace Orkestra\TransactorBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\Controller,
-    Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
-    Orkestra\PaginationBundle\Pagination\Paginator;
+    JMS\SecurityExtraBundle\Annotation\Secure;
+    
+use Orkestra\OrkestraBundle\Controller\Controller;
     
 use Orkestra\TransactorBundle\Form\TransactorSelectType,
-    Orkestra\TransactorBundle\Pagination\TransactorListOptions;
+    Orkestra\TransactorBundle\Listing\TransactorOptions;
 
 /**
  * Transactor controller.
@@ -26,11 +27,13 @@ class TransactorController extends Controller
      */
     public function indexAction()
     {
-        $paginator = new Paginator($this->container, new TransactorListOptions($this->getDoctrine()->getEntityManager()));
+        $listing = $this->createListing(new TransactorOptions($this->getDoctrine()->getEntityManager()));
 
-        return array('paginator' => $paginator->createView());
+        return array(
+            'listing' => $listing
+        );
     }
-
+    
     /**
      * Finds and displays a TransactorBase entity.
      *

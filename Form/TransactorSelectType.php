@@ -13,7 +13,7 @@ class TransactorSelectType extends AbstractType
     
     public function buildForm(FormBuilder $builder, array $options)
     {
-        $builder->add('type', 'choice', array('choices' => self::$_transactors));
+        $builder->add('type', 'choice', array('choices' => self::$_transactors, 'empty_value' => ''));
     }
 
     public function getName()
