@@ -2,10 +2,10 @@
 
 namespace Orkestra\TransactorBundle\Listing;
 
-use Orkestra\OrkestraBundle\Listing\ListingOptions,
-    Orkestra\OrkestraBundle\Listing\Column,
-    Orkestra\OrkestraBundle\Listing\Route,
-    Orkestra\OrkestraBundle\Listing\Adapter\DoctrineAdapter;
+use Orkestra\OrkestraBundle\Component\Listing\ListingOptions,
+    Orkestra\OrkestraBundle\Component\Listing\Column,
+    Orkestra\OrkestraBundle\Component\Listing\Route,
+    Orkestra\OrkestraBundle\Component\Listing\Adapter\DoctrineAdapter;
 
 use Doctrine\ORM\EntityManager;
 
