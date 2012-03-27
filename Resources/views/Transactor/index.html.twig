@@ -1,11 +1,9 @@
-{% extends '::base.html.twig' %}
+{% extends '::listing_base.html.twig' %}
 
 {% block subtitle %}Transactors{% endblock %}
 
-{% block content_header %}<h1>Transactors</h1>{% endblock %}
+{% block content_header %}<div class="large-icon transactors"></div><h1>Transactors</h1>{% endblock %}
 
-{% block content %}
-<div id="inner-header"><h2>Transactors</h2></div>
-
-{{ listing.render | raw }}
+{% block inner_header %}
+<h2>Transactors</h2>
 {% endblock %}
