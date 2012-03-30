@@ -1,8 +1,13 @@
-<h1>Edit Transactor</h1>
+{% extends '::popup_base.html.twig' %}
 
+{% block header %}Edit Transactor{% endblock %}
+
+{% block body %}
 <form action="{{ path('admin_transactor_update', { 'id': transactor.id }) }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
     <p class="form-buttons">
         <button type="submit">Save Changes</button>
     </p>
 </form>
+
+{% endblock %}

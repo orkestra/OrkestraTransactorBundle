@@ -1,4 +1,8 @@
-<h1>New Transactor</h1>
+{% extends '::popup_base.html.twig' %}
+
+{% block header %}New Transactor{% endblock %}
+
+{% block body %}
 <p>Select the platform for the new transactor.</p>
 <form action="{{ path('admin_transactor_new') }}" method="post" {{ form_enctype(form) }}>
     {{ form_widget(form) }}
@@ -16,3 +20,4 @@ $(function() {
   })
 });
 </script>
+{% endblock %}
