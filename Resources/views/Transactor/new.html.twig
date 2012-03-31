@@ -10,7 +10,6 @@
 <script type="text/javascript">
 $(function() {
   $('#orkestra_transactorselecttype_type').change(function() {
-    console.log('hello');
     ui.load({
       url : ui.route('{{ path('admin_transactor_configure', { 'type' : '_type_' }) }}', { '_type_' : $(this).val() }),
       success : function(data) {
