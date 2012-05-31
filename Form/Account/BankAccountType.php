@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkestra\TransactorBundle\Form\Account;
+namespace Orkestra\Bundle\TransactorBundle\Form\Account;
 
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilder;
@@ -18,12 +18,12 @@ class BankAccountType extends AbstractType
         $builder->add('accountNumber', null, array('label' => 'Account Number'))
                 ->add('routingNumber', null, array('label' => 'Routing Number', 'required' => true))
                 ->add('accountType', 'enum', array(
-                    'empty_value' => false, 
-                    'enum' => 'Orkestra\Transactor\Entity\Account\BankAccount\AccountType', 
+                    'empty_value' => false,
+                    'enum' => 'Orkestra\Transactor\Entity\Account\BankAccount\AccountType',
                     'label' => 'Account Type'
                 ));
     }
-    
+
     /**
      * {@inheritdoc}
      */
@@ -33,7 +33,7 @@ class BankAccountType extends AbstractType
     		'data_class' => 'Orkestra\Transactor\Entity\Account\BankAccount',
     	);
     }
-    
+
     /**
      * {@inheritdoc}
      */

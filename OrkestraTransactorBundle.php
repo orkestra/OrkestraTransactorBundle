@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkestra\TransactorBundle;
+namespace Orkestra\Bundle\TransactorBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle,
     Doctrine\DBAL\Types\Type;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkestra\TransactorBundle\Form;
+namespace Orkestra\Bundle\TransactorBundle\Form;
 
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormTypeInterface,
@@ -9,7 +9,7 @@ use Symfony\Component\Form\AbstractType,
 class CredentialsType extends AbstractType
 {
     protected $_fields;
-    
+
     public function __construct(array $fields)
     {
         $this->_fields = $fields;
@@ -23,7 +23,7 @@ class CredentialsType extends AbstractType
                 $name = $field['name'];
                 $type = empty($field['type']) ? null : $field['type'];
                 $options = empty($field['options']) ? array() : $field['options'];
-                
+
                 $builder->add($name, $type, $options);
             }
             else {
@@ -31,7 +31,7 @@ class CredentialsType extends AbstractType
             }
         }
     }
-    
+
     public function getParent(array $options)
     {
         return 'form';

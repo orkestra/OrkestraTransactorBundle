@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkestra\TransactorBundle\Form;
+namespace Orkestra\Bundle\TransactorBundle\Form;
 
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilder,

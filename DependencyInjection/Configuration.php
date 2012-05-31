@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkestra\TransactorBundle\DependencyInjection;
+namespace Orkestra\Bundle\TransactorBundle\DependencyInjection;
 
 use Symfony\Component\Config\Definition\Builder\TreeBuilder;
 use Symfony\Component\Config\Definition\ConfigurationInterface;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkestra\TransactorBundle\DependencyInjection;
+namespace Orkestra\Bundle\TransactorBundle\DependencyInjection;
 
 use Symfony\Component\DependencyInjection\ContainerBuilder,
     Symfony\Component\Config\FileLocator,

@@ -1,16 +1,16 @@
 <?php
 
-namespace Orkestra\TransactorBundle\Controller;
+namespace Orkestra\Bundle\TransactorBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Route,
     Sensio\Bundle\FrameworkExtraBundle\Configuration\Template,
     JMS\SecurityExtraBundle\Annotation\Secure;
-    
+
 use Orkestra\OrkestraBundle\Controller\Controller;
-    
-use Orkestra\TransactorBundle\Form\TransactorSelectType,
-    Orkestra\TransactorBundle\Listing\TransactorOptions;
+
+use Orkestra\Bundle\TransactorBundle\Form\TransactorSelectType,
+    Orkestra\Bundle\TransactorBundle\Listing\TransactorOptions;
 
 /**
  * Transactor controller.
@@ -33,7 +33,7 @@ class TransactorController extends Controller
             'listing' => $listing
         );
     }
-    
+
     /**
      * Finds and displays a TransactorBase entity.
      *
@@ -65,10 +65,10 @@ class TransactorController extends Controller
 
         if ($this->getRequest()->getMethod() == 'POST') {
             $form->bindRequest($this->getRequest());
-            
+
             if ($form->isValid()) {
                 $data = $form->getData();
-                
+
                 return $this->redirect($this->generateUrl('admin_transactor_configure', array('type' => $data['type'])));
             }
         }
@@ -77,7 +77,7 @@ class TransactorController extends Controller
             'form' => $form->createView()
         );
     }
-    
+
     /**
      * Displays a form to configure a new TransactorBase.
      *
@@ -87,19 +87,19 @@ class TransactorController extends Controller
     public function configureAction()
     {
         $request = $this->getRequest();
-        
+
         $type = $request->get('type');
-        
+
         if (!$type) {
             throw $this->createNotFoundException('No transactor type specified');
         }
-        
-        $formTypeName = 'Orkestra\TransactorBundle\Form\\' . $type . 'Type';
-        
+
+        $formTypeName = 'Orkestra\Bundle\TransactorBundle\Form\\' . $type . 'Type';
+
         if (!class_exists($formTypeName)) {
             throw $this->createNotFoundException(sprintf('Transactor of type %s is not configured correctly. No FormType found.', $type));
         }
-        
+
         $form = $this->createForm(new $formTypeName());
 
         if ($this->getRequest()->getMethod() == 'POST') {
@@ -110,13 +110,13 @@ class TransactorController extends Controller
                 $transactor = $form->getData();
                 $em->persist($transactor);
                 $em->flush();
-                
+
                 $this->get('session')->setFlash('success', 'The transactor has been created.');
-                
+
                 return $this->redirect($this->generateUrl('admin_transactor_show', array('id' => $transactor->getId())));
             }
         }
-        
+
         return array(
             'type' => $type,
             'form' => $form->createView()
@@ -136,10 +136,10 @@ class TransactorController extends Controller
         if (!$transactor) {
             throw $this->createNotFoundException('Unable to locate Transactor');
         }
-        
+
         $type = @array_pop(explode('\\', get_class($transactor)));
-        $formTypeName = 'Orkestra\TransactorBundle\Form\\' . $type . 'Type';
-        
+        $formTypeName = 'Orkestra\Bundle\TransactorBundle\Form\\' . $type . 'Type';
+
         if (!class_exists($formTypeName)) {
             throw $this->createNotFoundException(sprintf('Transactor of type %s is not configured correctly. No FormType found.', $type));
         }
@@ -168,14 +168,14 @@ class TransactorController extends Controller
         }
 
         $type = @array_pop(explode('\\', get_class($transactor)));
-        $formTypeName = 'Orkestra\TransactorBundle\Form\\' . $type . 'Type';
-        
+        $formTypeName = 'Orkestra\Bundle\TransactorBundle\Form\\' . $type . 'Type';
+
         if (!class_exists($formTypeName)) {
             throw $this->createNotFoundException(sprintf('Transactor of type %s is not configured correctly. No FormType found.', $type));
         }
 
         $form = $this->createForm(new $formTypeName(), $transactor);
-        
+
         $form->bindRequest($this->getRequest());
 
         if ($form->isValid()) {

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkestra\TransactorBundle\Pagination;
+namespace Orkestra\Bundle\TransactorBundle\Pagination;
 
 use Orkestra\PaginationBundle\Pagination\PaginationOptions,
     Orkestra\PaginationBundle\Pagination\Columns\PropertyColumn,
@@ -15,10 +15,10 @@ class TransactorListOptions extends PaginationOptions
     {
         $query = $em->createQuery('SELECT t FROM Orkestra\Transactor\Entity\TransactorBase t');
         $this->setAdapter(new DoctrineAdapter($query))
-             
+
              ->addColumn(new PropertyColumn('id', 'ID'))
              ->addColumn(new PropertyColumn('name', 'Name', array(
-                                'route' => 'admin_transactor_show', 
+                                'route' => 'admin_transactor_show',
                                 'routeParams' => array(
                                     'id' => 'id'
                                 ))))

@@ -1,6 +1,6 @@
 <?php
 
-namespace Orkestra\TransactorBundle\Listing;
+namespace Orkestra\Bundle\TransactorBundle\Listing;
 
 use Orkestra\OrkestraBundle\Component\Listing\ListingOptions,
     Orkestra\OrkestraBundle\Component\Listing\Column,
@@ -24,7 +24,7 @@ class TransactorOptions extends ListingOptions
     public function __construct(EntityManager $em)
     {
         $adapter = new DoctrineAdapter($em->createQuery('SELECT t FROM Orkestra\Transactor\Entity\TransactorBase t'));
-        
+
         $this->setAdapter($adapter)
              ->addDisplayColumn(new Column\PropertyColumn('id', 'ID', array('width' => '75px', 'class' => 'center')))
              ->addDisplayColumn(new Column\PropertyColumn('name', 'Name', array('width' => '150px')))
