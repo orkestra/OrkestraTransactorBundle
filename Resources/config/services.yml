@@ -1,8 +1,33 @@
 services:
-  orkestra.transactor_repository:
-    class: Orkestra\Transactor\Repository\TransactorRepository
-    factory_service: doctrine.orm.entity_manager
-    factory_method: getRepository
-    arguments: [ Orkestra\Transactor\Entity\TransactorBase ]
-    calls:
-      - [ setContainer, [ @service_container ] ]
+  # Transactors
+  orkestra.transactor.network_merchants.card:
+    class: Orkestra\Transactor\Transactor\NetworkMerchants\CardTransactor
+    arguments: [ @orkestra.kernel.http ]
+    tags:
+      - { name: orkestra.transactor }
+  orkestra.transactor.payments_xpress.ach:
+    class: Orkestra\Transactor\Transactor\PaymentsXpress\AchTransactor
+    arguments: [ @orkestra.kernel.http ]
+    tags:
+      - { name: orkestra.transactor }
+
+  # Factories
+  orkestra.transactor_factory:
+    class: Orkestra\Transactor\TransactorFactory
+
+  # Form Types
+  orkestra.form_type.credentials.default:
+    class: Orkestra\Bundle\TransactorBundle\Form\DefaultCredentialsType
+    arguments: [ @orkestra.transactor_factory ]
+    tags:
+      - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials }
+  orkestra.form_type.credentials.nmi_card:
+    class: Orkestra\Bundle\TransactorBundle\Form\Transactor\NetworkMerchants\CardCredentialsType
+    arguments: [ @orkestra.transactor_factory ]
+    tags:
+      - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.network_merchants.card }
+  orkestra.form_type.credentials.px_ach:
+    class: Orkestra\Bundle\TransactorBundle\Form\Transactor\PaymentsXpress\AchCredentialsType
+    arguments: [ @orkestra.transactor_factory ]
+    tags:
+      - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.payments_xpress.ach }

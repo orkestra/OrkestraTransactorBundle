@@ -1,3 +1,0 @@
-OrkestraTransactorBundle_routes:
-  resource: "@OrkestraTransactorBundle/Controller"
-  type:     annotation

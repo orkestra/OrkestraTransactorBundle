@@ -3,7 +3,10 @@
 namespace Orkestra\Bundle\TransactorBundle;
 
 use Symfony\Component\HttpKernel\Bundle\Bundle;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Doctrine\DBAL\Types\Type;
+
+use Orkestra\Bundle\TransactorBundle\DependencyInjection\Compiler\RegisterTransactorsPass;
 
 class OrkestraTransactorBundle extends Bundle
 {
@@ -15,5 +18,10 @@ class OrkestraTransactorBundle extends Bundle
         Type::addType('enum.orkestra.result_type', 'Orkestra\Transactor\DBAL\Types\ResultTypeEnumType');
         Type::addType('orkestra.month', 'Orkestra\Transactor\DBAL\Types\MonthType');
         Type::addType('orkestra.year', 'Orkestra\Transactor\DBAL\Types\YearType');
+    }
+
+    public function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new RegisterTransactorsPass());
     }
 }
