@@ -15,6 +15,13 @@ services:
   orkestra.transactor_factory:
     class: Orkestra\Transactor\TransactorFactory
 
+  # Repositories
+  orkestra.transactor.repository.transaction:
+    class: Doctrine\ORM\EntityRepository
+    factory_service: doctrine.orm.entity_manager
+    factory_method: getRepository
+    arguments: [ Orkestra\Transactor\Entity\Transaction ]
+
   # Form Types
   orkestra.form_type.credentials.default:
     class: Orkestra\Bundle\TransactorBundle\Form\DefaultCredentialsType
