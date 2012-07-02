@@ -6,7 +6,7 @@ use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Doctrine\DBAL\Types\Type;
 
-use Orkestra\Bundle\TransactorBundle\DependencyInjection\Compiler\RegisterTransactorsPass;
+use Orkestra\Transactor\DependencyInjection\Compiler\RegisterTransactorsPass;
 
 class OrkestraTransactorBundle extends Bundle
 {
