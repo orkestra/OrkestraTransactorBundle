@@ -5,7 +5,7 @@ namespace Orkestra\Bundle\TransactorBundle\Form;
 use Symfony\Component\Form\AbstractType;
 use Orkestra\Transactor\TransactorFactory;
 use Symfony\Component\Form\FormTypeInterface;
-use Symfony\Component\Form\FormBuilder;
+use Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Base class for any Credentials form type
@@ -39,7 +39,7 @@ abstract class AbstractCredentialsType extends AbstractType
      * @param \Symfony\Component\Form\FormBuilder $builder
      * @param array $options
      */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $transactors = array();
 

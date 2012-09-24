@@ -3,7 +3,7 @@
 namespace Orkestra\Bundle\TransactorBundle\Form\Account;
 
 use Symfony\Component\Form\AbstractType,
-    Symfony\Component\Form\FormBuilder;
+    Symfony\Component\Form\FormBuilderInterface;
 
 /**
  * Form Type for BankAccounts
@@ -13,7 +13,7 @@ class BankAccountType extends AbstractType
 	/**
 	 * {@inheritdoc}
 	 */
-    public function buildForm(FormBuilder $builder, array $options)
+    public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add('accountNumber', null, array('label' => 'Account Number'))
                 ->add('routingNumber', null, array('label' => 'Routing Number', 'required' => true))
