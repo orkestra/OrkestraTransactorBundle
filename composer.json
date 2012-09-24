@@ -1,0 +1,14 @@
+{
+    "name": "orkestra/transactor-bundle",
+    "description": "Integrates the Orkestra Transactor with Symfony 2",
+    "type": "symfony-bundle",
+    "license": "MIT",
+    "require": {
+        "php": ">=5.3.0",
+        "orkestra/transactor": ">=0.2.3"
+    },
+    "autoload": {
+        "psr-0": { "Orkestra\\Bundle\\TransactorBundle": "" }
+    },
+    "target-dir": "Orkestra/Bundle/TransactorBundle"
+}
