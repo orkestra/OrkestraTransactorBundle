@@ -21,6 +21,11 @@ services:
     factory_service: doctrine.orm.entity_manager
     factory_method: getRepository
     arguments: [ Orkestra\Transactor\Entity\Transaction ]
+  orkestra.transactor.repository.account:
+    class: Doctrine\ORM\EntityRepository
+    factory_service: doctrine.orm.entity_manager
+    factory_method: getRepository
+    arguments: [ Orkestra\Transactor\Entity\AbstractAccount ]
 
   # Form Types
   orkestra.form_type.credentials.default:
@@ -38,3 +43,9 @@ services:
     arguments: [ @orkestra.transactor_factory ]
     tags:
       - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.payments_xpress.ach }
+
+  # Twig extensions
+  orkestra.transactor.twig_extension:
+    class: Orkestra\Bundle\TransactorBundle\Twig\TransactorExtension
+    tags:
+      - { name: twig.extension }
