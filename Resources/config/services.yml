@@ -10,6 +10,10 @@ services:
     arguments: [ @orkestra.kernel.http ]
     tags:
       - { name: orkestra.transactor }
+  orkestra.transactor.generic.generic:
+    class: Orkestra\Transactor\Transactor\Generic\GenericTransactor
+    tags:
+      - { name: orkestra.transactor }
 
   # Factories
   orkestra.transactor_factory:
