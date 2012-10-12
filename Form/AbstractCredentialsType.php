@@ -3,8 +3,8 @@
 namespace Orkestra\Bundle\TransactorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Orkestra\Transactor\TransactorFactory;
-use Symfony\Component\Form\FormTypeInterface;
 use Symfony\Component\Form\FormBuilderInterface;
 
 /**
@@ -36,7 +36,7 @@ abstract class AbstractCredentialsType extends AbstractType
     abstract protected function getTransactorType();
 
     /**
-     * @param \Symfony\Component\Form\FormBuilder $builder
+     * @param \Symfony\Component\Form\FormBuilderInterface $builder
      * @param array $options
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -44,21 +44,23 @@ abstract class AbstractCredentialsType extends AbstractType
         $transactors = array();
 
         foreach ($this->_factory->getTransactors() as $transactor) {
-            $transactors[$transactor->getType()] = $transactor->getName();
+            if (false === $options['network'] || $transactor->supportsNetwork($options['network'])) {
+                $transactors[$transactor->getType()] = $transactor->getName();
+            }
         }
 
         $builder->add('transactor', 'choice', array('choices' => $transactors, 'empty_value' => ''));
     }
 
     /**
-     * @param array $options
-     * @return array
+     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
      */
-    public function getDefaultOptions(array $options)
+    public function setDefaultOptions(OptionsResolverInterface $resolver)
     {
-        return array(
+        $resolver->setDefaults(array(
+            'network' => false,
             'data_class' => 'Orkestra\Transactor\Entity\Credentials'
-        );
+        ));
     }
 
     /**
