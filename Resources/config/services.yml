@@ -14,6 +14,10 @@ services:
     class: Orkestra\Transactor\Transactor\Generic\GenericTransactor
     tags:
       - { name: orkestra.transactor }
+  orkestra.transactor.generic.points:
+    class: Orkestra\Transactor\Transactor\Generic\PointsTransactor
+    tags:
+      - { name: orkestra.transactor }
 
   # Factories
   orkestra.transactor_factory:
@@ -47,9 +51,3 @@ services:
     arguments: [ @orkestra.transactor_factory ]
     tags:
       - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.payments_xpress.ach }
-
-  # Twig extensions
-  orkestra.transactor.twig_extension:
-    class: Orkestra\Bundle\TransactorBundle\Twig\TransactorExtension
-    tags:
-      - { name: twig.extension }
