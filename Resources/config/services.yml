@@ -51,3 +51,9 @@ services:
     arguments: [ @orkestra.transactor_factory ]
     tags:
       - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.payments_xpress.ach }
+
+  # Subscribers
+  orkestra.transactor.encryption_metadata_subscriber:
+    class: Orkestra\Bundle\TransactorBundle\Subscriber\EncryptionClassMetadataSubscriber
+    tags:
+      - { name: doctrine.event_subscriber }
