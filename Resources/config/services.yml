@@ -1,8 +1,15 @@
 services:
+  # Guzzle client
+  orkestra.transactor.guzzle_client:
+    class: Guzzle\Http\Client
+    arguments:
+      - ''
+      - { 'curl.options': { 'CURLOPT_CAINFO': %orkestra.ca_bundle.path%, 'CURLOPT_SSL_VERIFYPEER': true } }
+
   # Transactors
   orkestra.transactor.network_merchants.card:
     class: Orkestra\Transactor\Transactor\NetworkMerchants\CardTransactor
-    arguments: [ @orkestra.kernel.http ]
+    arguments: [ @orkestra.transactor.guzzle_client ]
     tags:
       - { name: orkestra.transactor }
   orkestra.transactor.payments_xpress.ach:
