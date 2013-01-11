@@ -5,7 +5,7 @@
     "license": "MIT",
     "require": {
         "php": ">=5.3.0",
-        "orkestra/transactor": ">=0.2.3"
+        "orkestra/transactor": "dev-master"
     },
     "autoload": {
         "psr-0": { "Orkestra\\Bundle\\TransactorBundle": "" }
