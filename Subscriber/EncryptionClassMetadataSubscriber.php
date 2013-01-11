@@ -8,7 +8,7 @@ use Doctrine\ORM\Event\LoadClassMetadataEventArgs;
 
 /**
  * Responsible for changing an AbstractAccount's 'accountNumber' field
- * into a simple string type, effectively removing encryption of the field.
+ * into an encrypted string type, effectively adding encryption of the field.
  */
 class EncryptionClassMetadataSubscriber implements EventSubscriber
 {
@@ -20,7 +20,7 @@ class EncryptionClassMetadataSubscriber implements EventSubscriber
         $metadata = $event->getClassMetadata();
 
         if ('Orkestra\Transactor\Entity\AbstractAccount' === $metadata->name) {
-            $metadata->fieldMappings['accountNumber']['type'] = 'string';
+            $metadata->fieldMappings['accountNumber']['type'] = 'encrypted_string';
         }
     }
 
