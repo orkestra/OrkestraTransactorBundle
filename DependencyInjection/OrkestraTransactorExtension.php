@@ -20,7 +20,7 @@ class OrkestraTransactorExtension extends Extension
         $loader = new Loader\YamlFileLoader($container, new FileLocator(__DIR__.'/../Resources/config'));
         $loader->load('services.yml');
 
-        if (false !== $config['enable_encryption']) {
+        if (false === $config['enable_encryption']) {
             $container->removeDefinition('orkestra.transactor.encryption_metadata_subscriber');
         }
     }
