@@ -8,8 +8,9 @@
         "orkestra/transactor": "dev-master"
     },
     "require-dev": {
-        "symfony/framework-bundle": ">=2.1,<2.3-dev",
+        "symfony/framework-bundle": "2.1.*",
         "symfony/dependency-injection": "2.1.*",
+        "symfony/form": "2.1.*",
         "doctrine/orm": "2.3.*"
     },
     "autoload": {
