@@ -10,6 +10,7 @@
     "require-dev": {
         "symfony/framework-bundle": "2.1.*",
         "symfony/dependency-injection": "2.1.*",
+        "symfony/yaml": "2.1.*",
         "symfony/form": "2.1.*",
         "doctrine/orm": "2.3.*"
     },
