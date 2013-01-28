@@ -21,12 +21,12 @@ class OrkestraTransactorBundle extends Bundle
     public function boot()
     {
         // Register all custom DBAL field types
-        Type::addType('enum.orkestra.transaction_type', 'Orkestra\Transactor\DBAL\Types\TransactionTypeEnumType');
-        Type::addType('enum.orkestra.network_type', 'Orkestra\Transactor\DBAL\Types\NetworkTypeEnumType');
-        Type::addType('enum.orkestra.bank_account_type', 'Orkestra\Transactor\DBAL\Types\AccountTypeEnumType');
-        Type::addType('enum.orkestra.result_status', 'Orkestra\Transactor\DBAL\Types\ResultStatusEnumType');
-        Type::addType('orkestra.month', 'Orkestra\Transactor\DBAL\Types\MonthType');
-        Type::addType('orkestra.year', 'Orkestra\Transactor\DBAL\Types\YearType');
+        Type::addType('enum.orkestra.transaction_type',  'Orkestra\Transactor\DbalType\TransactionTypeEnumType');
+        Type::addType('enum.orkestra.network_type',      'Orkestra\Transactor\DbalType\NetworkTypeEnumType');
+        Type::addType('enum.orkestra.bank_account_type', 'Orkestra\Transactor\DbalType\AccountTypeEnumType');
+        Type::addType('enum.orkestra.result_status',     'Orkestra\Transactor\DbalType\ResultStatusEnumType');
+        Type::addType('orkestra.month',                  'Orkestra\Transactor\DbalType\MonthType');
+        Type::addType('orkestra.year',                   'Orkestra\Transactor\DbalType\YearType');
     }
 
     public function build(ContainerBuilder $container)
