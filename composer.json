@@ -4,8 +4,8 @@
     "type": "symfony-bundle",
     "license": "MIT",
     "require": {
-        "php": ">=5.3.0",
-        "orkestra/transactor": "dev-master"
+        "php": ">=5.3.3",
+        "orkestra/transactor": ">=1.0.0,<1.2.0"
     },
     "require-dev": {
         "symfony/framework-bundle": "2.1.*",
