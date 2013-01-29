@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of OrkestratTransactorBundle.
+ * This file is part of OrkestraTransactorBundle.
  *
  * Copyright (c) Orkestra Community
  *
@@ -30,6 +30,23 @@ class EncryptionClassMetadataSubscriberTest extends \PHPUnit_Framework_TestCase
         $subscriber->loadClassMetadata($event);
 
         $this->assertEquals('encrypted_string', $metadata->fieldMappings['accountNumber']['type']);
+    }
+
+    public function testSubscriberChangesSwipedCardFields()
+    {
+        $metadata = $this->getMetadata('Orkestra\Transactor\Entity\Account\SwipedCardAccount');
+        $entityManager = $this->getMockBuilder('Doctrine\ORM\EntityManager')
+            ->disableOriginalConstructor()
+            ->getMock();
+
+        $event = new LoadClassMetadataEventArgs($metadata, $entityManager);
+
+        $subscriber = new EncryptionClassMetadataSubscriber();
+        $subscriber->loadClassMetadata($event);
+
+        $this->assertEquals('encrypted_string', $metadata->fieldMappings['trackOne']['type']);
+        $this->assertEquals('encrypted_string', $metadata->fieldMappings['trackTwo']['type']);
+        $this->assertEquals('encrypted_string', $metadata->fieldMappings['trackThree']['type']);
     }
 
     public function testSubscriberIgnoresNonAccountEntity()
