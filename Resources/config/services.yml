@@ -14,7 +14,7 @@ services:
       - { name: orkestra.transactor }
   orkestra.transactor.payments_xpress.ach:
     class: Orkestra\Transactor\Transactor\PaymentsXpress\AchTransactor
-    arguments: [ @orkestra.kernel.http ]
+    arguments: [ @orkestra.transactor.guzzle_client ]
     tags:
       - { name: orkestra.transactor }
   orkestra.transactor.generic.generic:
