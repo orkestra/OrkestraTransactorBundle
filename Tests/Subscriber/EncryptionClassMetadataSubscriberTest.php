@@ -1,7 +1,7 @@
 <?php
 
 /*
- * This file is part of OrkestratTransactorBundle.
+ * This file is part of OrkestraTransactorBundle.
  *
  * Copyright (c) Orkestra Community
  *
