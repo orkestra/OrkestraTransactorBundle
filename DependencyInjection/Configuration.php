@@ -27,6 +27,7 @@ class Configuration implements ConfigurationInterface
         $rootNode
             ->children()
                 ->booleanNode('enable_encryption')->defaultFalse()->end()
+                ->scalarNode('certificate_authority')->defaultValue(false)->end()
             ->end();
 
         return $treeBuilder;
