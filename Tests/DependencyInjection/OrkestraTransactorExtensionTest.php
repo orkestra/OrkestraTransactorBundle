@@ -53,4 +53,28 @@ END;
 
         $this->assertTrue($container->hasDefinition('orkestra.transactor.encryption_metadata_subscriber'));
     }
+    
+    public function testCertificateAuthority()
+    {
+        $yaml = <<<END
+certificate_authority: true
+END;
+
+        $config = Yaml::parse($yaml);
+        $container = new ContainerBuilder();
+        $extension = new OrkestraTransactorExtension();
+        $extension->load(array($config), $container);
+        
+        $this->assertTrue($container->getParameter('orkestra.ca_bundle.path'));
+    }
+    
+    public function testCertificateAuthorityDefaultValue()
+    {
+        $config = Yaml::parse('');
+        $container = new ContainerBuilder();
+        $extension = new OrkestraTransactorExtension();
+        $extension->load(array($config), $container);
+        
+        $this->assertFalse($container->getParameter('orkestra.ca_bundle.path'));
+    }
 }
