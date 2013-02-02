@@ -32,5 +32,9 @@ class OrkestraTransactorExtension extends Extension
         if (false === $config['enable_encryption']) {
             $container->removeDefinition('orkestra.transactor.encryption_metadata_subscriber');
         }
+        
+        if (!$container->hasParameter('orkestra.ca_bundle.path') && isset($config['certificate_authority'])) {
+            $container->setParameter('orkestra.ca_bundle.path', $config['certificate_authority']);
+        }
     }
 }
