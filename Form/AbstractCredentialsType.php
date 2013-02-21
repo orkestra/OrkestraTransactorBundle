@@ -58,7 +58,11 @@ abstract class AbstractCredentialsType extends AbstractType
             }
         }
 
-        $builder->add('transactor', 'choice', array('choices' => $transactors, 'empty_value' => $options['empty_value']));
+        $builder->add('transactor', 'choice', array(
+            'choices' => $transactors,
+            'empty_value' => $options['empty_value'],
+            'label' => $options['label']
+        ));
     }
 
     /**
@@ -70,6 +74,7 @@ abstract class AbstractCredentialsType extends AbstractType
             'network' => false,
             'data_class' => 'Orkestra\Transactor\Entity\Credentials',
             'empty_value' => '',
+            'label' => 'Transactor',
         ));
     }
 
