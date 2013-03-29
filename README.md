@@ -1,7 +1,7 @@
 OrkestraTransactorBundle
 ========================
 
-[![Build Status](https://travis-ci.org/orkestra/OrkestraTransactorBundle.png?branch=master,develop)](https://travis-ci.org/orkestra/OrkestraTransactorBundle)
+[![Build Status](https://travis-ci.org/orkestra/OrkestraTransactorBundle.png?branch=master)](https://travis-ci.org/orkestra/OrkestraTransactorBundle)
 
 Integrates [orkestra-transactor](https://github.com/orkestra/orkestra-transactor) with Symfony 2.
 
