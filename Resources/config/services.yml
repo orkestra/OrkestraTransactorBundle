@@ -4,8 +4,8 @@ services:
     class: Guzzle\Http\Client
     arguments:
       - ''
-      - { 'curl.options': { 'CURLOPT_CAINFO': %orkestra.ca_bundle.path%, 'CURLOPT_SSL_VERIFYPEER': true } }
-
+      - { 'ssl.certificate_authority': %orkestra.ca_bundle.path% }
+      
   # Transactors
   orkestra.transactor.network_merchants.card:
     class: Orkestra\Transactor\Transactor\NetworkMerchants\CardTransactor
