@@ -26,6 +26,18 @@ services:
     tags:
       - { name: orkestra.transactor }
 
+  # Track Decoders
+  orkestra.transactor.decoder.iso7813:
+    class: Orkestra\Transactor\TrackDecoder\Iso7813Decoder
+  orkestra.transactor.decoder.enhanced_encryption:
+    class: Orkestra\Transactor\TrackDecoder\EnhancedEncryptionDecoder
+    arguments: [ @orkestra.transactor.decoder.iso7813 ]
+  orkestra.transactor.decoder.chain:
+    class: Orkestra\Transactor\TrackDecoder\ChainDecoder
+    calls:
+      - [ registerDecoder, [ @orkestra.transactor.decoder.enhanced_encryption ] ]
+      - [ registerDecoder, [ @orkestra.transactor.decoder.iso7813 ] ]
+
   # Factories
   orkestra.transactor_factory:
     class: Orkestra\Transactor\TransactorFactory
