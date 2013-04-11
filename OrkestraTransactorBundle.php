@@ -14,6 +14,7 @@ namespace Orkestra\Bundle\TransactorBundle;
 use Symfony\Component\HttpKernel\Bundle\Bundle;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Doctrine\DBAL\Types\Type;
+use Orkestra\Common\DbalType\EncryptedStringType;
 use Orkestra\Transactor\DependencyInjection\Compiler\RegisterTransactorsPass;
 
 class OrkestraTransactorBundle extends Bundle
@@ -27,7 +28,12 @@ class OrkestraTransactorBundle extends Bundle
         Type::addType('enum.orkestra.result_status',     'Orkestra\Transactor\DbalType\ResultStatusEnumType');
         Type::addType('orkestra.month',                  'Orkestra\Transactor\DbalType\MonthType');
         Type::addType('orkestra.year',                   'Orkestra\Transactor\DbalType\YearType');
-        Type::addType('encrypted_string',                'Orkestra\Common\DbalType\EncryptedStringType');
+        
+        if (!Type::hasType('encrypted_string')) {
+            Type::addType('encrypted_string', 'Orkestra\Common\DbalType\EncryptedStringType');
+        } elseif (!(Type::getType('encrypted_string') instanceof EncryptedStringType)) {
+            throw new \UnexpectedValueException('Type encrypted_string must be instance of Orkestra\Common\DbalType\EncryptedStringType');
+        }
     }
 
     public function build(ContainerBuilder $container)
