@@ -27,6 +27,7 @@ class OrkestraTransactorBundle extends Bundle
         Type::addType('enum.orkestra.result_status',     'Orkestra\Transactor\DbalType\ResultStatusEnumType');
         Type::addType('orkestra.month',                  'Orkestra\Transactor\DbalType\MonthType');
         Type::addType('orkestra.year',                   'Orkestra\Transactor\DbalType\YearType');
+        Type::addType('encrypted_string',                'Orkestra\Common\DbalType\EncryptedStringType');
     }
 
     public function build(ContainerBuilder $container)
