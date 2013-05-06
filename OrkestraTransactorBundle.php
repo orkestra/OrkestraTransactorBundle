@@ -11,24 +11,27 @@
 
 namespace Orkestra\Bundle\TransactorBundle;
 
-use Symfony\Component\HttpKernel\Bundle\Bundle;
-use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Doctrine\DBAL\Types\Type;
 use Orkestra\Common\DbalType\EncryptedStringType;
 use Orkestra\Transactor\DependencyInjection\Compiler\RegisterTransactorsPass;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
+use Symfony\Component\HttpKernel\Bundle\Bundle;
 
 class OrkestraTransactorBundle extends Bundle
 {
+    /**
+     * {@inheritDoc}
+     */
     public function boot()
     {
         // Register all custom DBAL field types
-        Type::addType('enum.orkestra.transaction_type',  'Orkestra\Transactor\DbalType\TransactionTypeEnumType');
-        Type::addType('enum.orkestra.network_type',      'Orkestra\Transactor\DbalType\NetworkTypeEnumType');
-        Type::addType('enum.orkestra.bank_account_type', 'Orkestra\Transactor\DbalType\AccountTypeEnumType');
-        Type::addType('enum.orkestra.result_status',     'Orkestra\Transactor\DbalType\ResultStatusEnumType');
-        Type::addType('orkestra.month',                  'Orkestra\Transactor\DbalType\MonthType');
-        Type::addType('orkestra.year',                   'Orkestra\Transactor\DbalType\YearType');
-        
+        $this->registerTypeIfNotRegistered('enum.orkestra.transaction_type',  'Orkestra\Transactor\DbalType\TransactionTypeEnumType');
+        $this->registerTypeIfNotRegistered('enum.orkestra.network_type',      'Orkestra\Transactor\DbalType\NetworkTypeEnumType');
+        $this->registerTypeIfNotRegistered('enum.orkestra.bank_account_type', 'Orkestra\Transactor\DbalType\AccountTypeEnumType');
+        $this->registerTypeIfNotRegistered('enum.orkestra.result_status',     'Orkestra\Transactor\DbalType\ResultStatusEnumType');
+        $this->registerTypeIfNotRegistered('orkestra.month',                  'Orkestra\Transactor\DbalType\MonthType');
+        $this->registerTypeIfNotRegistered('orkestra.year',                   'Orkestra\Transactor\DbalType\YearType');
+
         if (!Type::hasType('encrypted_string')) {
             Type::addType('encrypted_string', 'Orkestra\Common\DbalType\EncryptedStringType');
         } elseif (!(Type::getType('encrypted_string') instanceof EncryptedStringType)) {
@@ -36,8 +39,27 @@ class OrkestraTransactorBundle extends Bundle
         }
     }
 
+    /**
+     * {@inheritDoc}
+     */
     public function build(ContainerBuilder $container)
     {
         $container->addCompilerPass(new RegisterTransactorsPass());
+    }
+
+    /**
+     * Registers a type with Doctrine DBAL if it is not already registered.
+     *
+     * This is necessary because multiple instantiations of this bundle will
+     * cause an error to be thrown by the DBAL.
+     *
+     * @param string $typeName
+     * @param string $className
+     */
+    private function registerTypeIfNotRegistered($typeName, $className)
+    {
+        if (!(Type::hasType($typeName))) {
+            Type::addType($typeName, $className);
+        }
     }
 }
