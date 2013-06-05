@@ -5,10 +5,15 @@ services:
     arguments:
       - ''
       - { 'ssl.certificate_authority': %orkestra.ca_bundle.path% }
-      
+
   # Transactors
   orkestra.transactor.network_merchants.card:
     class: Orkestra\Transactor\Transactor\NetworkMerchants\CardTransactor
+    arguments: [ @orkestra.transactor.guzzle_client ]
+    tags:
+      - { name: orkestra.transactor }
+  orkestra.transactor.network_merchants.ach:
+    class: Orkestra\Transactor\Transactor\NetworkMerchants\AchTransactor
     arguments: [ @orkestra.transactor.guzzle_client ]
     tags:
       - { name: orkestra.transactor }
@@ -65,6 +70,11 @@ services:
     arguments: [ @orkestra.transactor_factory ]
     tags:
       - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.network_merchants.card }
+  orkestra.form_type.credentials.nmi_ach:
+    class: Orkestra\Bundle\TransactorBundle\Form\Transactor\NetworkMerchants\AchCredentialsType
+    arguments: [ @orkestra.transactor_factory ]
+    tags:
+      - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.network_merchants.ach }
   orkestra.form_type.credentials.px_ach:
     class: Orkestra\Bundle\TransactorBundle\Form\Transactor\PaymentsXpress\AchCredentialsType
     arguments: [ @orkestra.transactor_factory ]
