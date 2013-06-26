@@ -29,5 +29,14 @@ class AchCredentialsType extends CardCredentialsType
         return 'orkestra.network_merchants.ach';
     }
 
+    /**
+     * @param \Symfony\Component\Form\FormBuilder $builder
+     * @param array $options
+     */
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
+        parent::buildForm($builder, $options);
 
+        $builder->add('secCode', 'text', array('label' => 'SEC Code'));
+    }
 }
