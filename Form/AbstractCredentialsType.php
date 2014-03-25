@@ -50,19 +50,22 @@ abstract class AbstractCredentialsType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $transactors = array();
-
-        foreach ($this->_factory->getTransactors() as $transactor) {
-            if (false === $options['network'] || $transactor->supportsNetwork($options['network'])) {
-                $transactors[$transactor->getType()] = $transactor->getName();
+        if ($options['include_transactor']) {
+            $transactors = array();
+    
+            foreach ($this->_factory->getTransactors() as $transactor) {
+                if (false === $options['network'] || $transactor->supportsNetwork($options['network'])) {
+                    $transactors[$transactor->getType()] = $transactor->getName();
+                }
             }
-        }
 
-        $builder->add('transactor', 'choice', array(
-            'choices' => $transactors,
-            'empty_value' => $options['empty_value'],
-            'label' => $options['label']
-        ));
+            $builder->add('transactor', 'choice', array(
+                'choices' => $transactors,
+                'empty_value' => $options['empty_value'],
+                'label' => $options['label'],
+                'disabled' => $options['disable_transactor']
+            ));
+        }
     }
 
     /**
@@ -75,6 +78,8 @@ abstract class AbstractCredentialsType extends AbstractType
             'data_class' => 'Orkestra\Transactor\Entity\Credentials',
             'empty_value' => '',
             'label' => 'Transactor',
+            'include_transactor' => true,
+            'disable_transactor' => false
         ));
     }
 
