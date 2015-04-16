@@ -30,6 +30,21 @@ services:
     class: Orkestra\Transactor\Transactor\Generic\PointsTransactor
     tags:
       - { name: orkestra.transactor }
+  orkestra.transactor.authorize_net.card:
+    class: Orkestra\Transactor\Transactor\AuthorizeNet\CardTransactor
+    arguments:
+      -  @orkestra.transactor.guzzle_client
+      -  @orkestra.transactor.serializer.authorize_net_transaction
+    tags:
+      - { name: orkestra.transactor }
+  orkestra.transactor.authorize_net.ach:
+    class: Orkestra\Transactor\Transactor\AuthorizeNet\AchTransactor
+    arguments:
+      -  @orkestra.transactor.guzzle_client
+      -  @orkestra.transactor.serializer.authorize_net_transaction
+    tags:
+      - { name: orkestra.transactor }
+
 
   # Track Decoders
   orkestra.transactor.decoder.iso7813:
@@ -80,9 +95,24 @@ services:
     arguments: [ @orkestra.transactor_factory ]
     tags:
       - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.payments_xpress.ach }
+  orkestra.form_type.credentials.auth_net_card:
+    class: Orkestra\Bundle\TransactorBundle\Form\Transactor\AuthorizeNet\CardCredentialsType
+    arguments: [ @orkestra.transactor_factory ]
+    tags:
+      - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.authorize_net.card }
+  orkestra.form_type.credentials.auth_net_ach:
+    class: Orkestra\Bundle\TransactorBundle\Form\Transactor\AuthorizeNet\AchCredentialsType
+    arguments: [ @orkestra.transactor_factory ]
+    tags:
+      - { name: orkestra.form_type, class: Orkestra\Transactor\Entity\Credentials, property: transactor, value: orkestra.authorize_net.ach }
+
 
   # Subscribers
   orkestra.transactor.encryption_metadata_subscriber:
     class: Orkestra\Bundle\TransactorBundle\Subscriber\EncryptionClassMetadataSubscriber
     tags:
       - { name: doctrine.event_subscriber }
+
+  # Serializers
+  orkestra.transactor.serializer.authorize_net_transaction:
+      class: Orkestra\Transactor\Serializer\AuthorizeNet\Card\TransactionNormalizer
