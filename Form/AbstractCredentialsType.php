@@ -12,6 +12,7 @@
 namespace Orkestra\Bundle\TransactorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 use Orkestra\Transactor\TransactorFactory;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -59,9 +60,9 @@ abstract class AbstractCredentialsType extends AbstractType
                 }
             }
 
-            $builder->add('transactor', 'choice', array(
+            $builder->add('transactor', ChoiceType::class, array(
                 'choices' => $transactors,
-                'empty_value' => $options['empty_value'],
+                'placeholder' => $options['empty_value'],
                 'label' => $options['label'],
                 'disabled' => $options['disable_transactor']
             ));
@@ -76,7 +77,7 @@ abstract class AbstractCredentialsType extends AbstractType
         $resolver->setDefaults(array(
             'network' => false,
             'data_class' => 'Orkestra\Transactor\Entity\Credentials',
-            'empty_value' => '',
+            'placeholder' => '',
             'label' => 'Transactor',
             'include_transactor' => true,
             'disable_transactor' => false

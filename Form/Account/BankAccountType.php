@@ -11,6 +11,7 @@
 
 namespace Orkestra\Bundle\TransactorBundle\Form\Account;
 
+use Orkestra\Bundle\ApplicationBundle\Form\EnumType;
 use Symfony\Component\Form\AbstractType,
     Symfony\Component\Form\FormBuilderInterface;
 
@@ -26,8 +27,8 @@ class BankAccountType extends AbstractType
     {
         $builder->add('accountNumber', null, array('label' => 'Account Number'))
                 ->add('routingNumber', null, array('label' => 'Routing Number', 'required' => true))
-                ->add('accountType', 'enum', array(
-                    'empty_value' => false,
+                ->add('accountType', EnumType::class, array(
+                    'placeholder' => false,
                     'enum' => 'Orkestra\Transactor\Entity\Account\BankAccount\AccountType',
                     'label' => 'Account Type'
                 ));

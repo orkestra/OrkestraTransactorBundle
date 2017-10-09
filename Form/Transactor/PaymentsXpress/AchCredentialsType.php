@@ -11,6 +11,7 @@
 
 namespace Orkestra\Bundle\TransactorBundle\Form\Transactor\PaymentsXpress;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Orkestra\Bundle\TransactorBundle\Form\AbstractCredentialsType;
 
@@ -37,11 +38,11 @@ class AchCredentialsType extends AbstractCredentialsType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('providerId', 'text', array('label' => 'Provider ID'))
-            ->add('providerGateId', 'text', array('label' => 'Provider Gate ID'))
-            ->add('providerGateKey', 'text', array('label' => 'Provider Gate Key'))
-            ->add('merchantId', 'text', array('label' => 'Merchant ID'))
-            ->add('merchantGateId', 'text', array('label' => 'Merchant Gate ID'))
-            ->add('merchantGateKey', 'text', array('label' => 'Merchant Gate Key'));
+        $builder->add('providerId', TextType::class, array('label' => 'Provider ID'))
+            ->add('providerGateId', TextType::class, array('label' => 'Provider Gate ID'))
+            ->add('providerGateKey', TextType::class, array('label' => 'Provider Gate Key'))
+            ->add('merchantId', TextType::class, array('label' => 'Merchant ID'))
+            ->add('merchantGateId', TextType::class, array('label' => 'Merchant Gate ID'))
+            ->add('merchantGateKey', TextType::class, array('label' => 'Merchant Gate Key'));
     }
 }
