@@ -13,7 +13,7 @@ namespace Orkestra\Bundle\TransactorBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\OptionsResolver\OptionsResolverInterface;
+use Symfony\Component\OptionsResolver\OptionsResolver;
 use Orkestra\Transactor\TransactorFactory;
 use Symfony\Component\Form\FormBuilderInterface;
 
@@ -70,9 +70,9 @@ abstract class AbstractCredentialsType extends AbstractType
     }
 
     /**
-     * @param \Symfony\Component\OptionsResolver\OptionsResolverInterface $resolver
+     * @param \Symfony\Component\OptionsResolver\OptionsResolver $resolver
      */
-    public function setDefaultOptions(OptionsResolverInterface $resolver)
+    public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
             'network' => false,
