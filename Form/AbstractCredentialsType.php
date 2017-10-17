@@ -56,7 +56,7 @@ abstract class AbstractCredentialsType extends AbstractType
     
             foreach ($this->_factory->getTransactors() as $transactor) {
                 if (false === $options['network'] || $transactor->supportsNetwork($options['network'])) {
-                    $transactors[$transactor->getType()] = $transactor->getName();
+                    $transactors[$transactor->getName()] = $transactor->getType();
                 }
             }
 
