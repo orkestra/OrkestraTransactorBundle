@@ -5,7 +5,7 @@
   "license": "MIT",
   "require": {
     "php": ">=5.3.3",
-    "orkestra/transactor": "~1.2"
+    "orkestra/transactor": "~1.1"
   },
   "require-dev": {
     "symfony/framework-bundle": "~2.3|~3.0",
