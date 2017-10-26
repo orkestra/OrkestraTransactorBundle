@@ -7,7 +7,7 @@ php:
   - 7.1
   - hhvm
 
-before_script: 
+before_install: 
   - phpenv config-rm xdebug.ini
 
 install:
