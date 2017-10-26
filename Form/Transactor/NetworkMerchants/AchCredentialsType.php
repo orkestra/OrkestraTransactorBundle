@@ -11,6 +11,7 @@
 
 namespace Orkestra\Bundle\TransactorBundle\Form\Transactor\NetworkMerchants;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Orkestra\Bundle\TransactorBundle\Form\AbstractCredentialsType;
 
@@ -37,6 +38,6 @@ class AchCredentialsType extends CardCredentialsType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('secCode', 'text', array('label' => 'SEC Code'));
+        $builder->add('secCode', TextType::class, array('label' => 'SEC Code'));
     }
 }

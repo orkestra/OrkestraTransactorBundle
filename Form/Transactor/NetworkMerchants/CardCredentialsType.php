@@ -11,6 +11,7 @@
 
 namespace Orkestra\Bundle\TransactorBundle\Form\Transactor\NetworkMerchants;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Orkestra\Bundle\TransactorBundle\Form\AbstractCredentialsType;
 
@@ -37,7 +38,7 @@ class CardCredentialsType extends AbstractCredentialsType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('username', 'text')
-            ->add('password', 'text');
+        $builder->add('username', TextType::class)
+            ->add('password', TextType::class);
     }
 }

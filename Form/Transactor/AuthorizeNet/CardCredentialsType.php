@@ -11,6 +11,7 @@
 
 namespace Orkestra\Bundle\TransactorBundle\Form\Transactor\AuthorizeNet;
 
+use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Orkestra\Bundle\TransactorBundle\Form\AbstractCredentialsType;
 
@@ -37,7 +38,7 @@ class CardCredentialsType extends AbstractCredentialsType
     {
         parent::buildForm($builder, $options);
 
-        $builder->add('username', 'text', array('label' => 'Api Key'))
-            ->add('password', 'text', array('label' => 'Transaction Key'));
+        $builder->add('username', TextType::class, array('label' => 'Api Key'))
+            ->add('password', TextType::class, array('label' => 'Transaction Key'));
     }
 }
